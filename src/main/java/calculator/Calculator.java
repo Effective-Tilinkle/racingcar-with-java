@@ -1,5 +1,9 @@
 package calculator;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BiFunction;
+
 public class Calculator {
     public static int calculate(String target) {
         validateTarget(target);
@@ -7,11 +11,11 @@ public class Calculator {
         String[] sArr = target.split(" ");
         int res = Integer.parseInt(sArr[0]);
 
-        for (int i = 1; i < sArr.length; i+=2) {
-            String operator = sArr[i];
-            int right = Integer.parseInt(sArr[i+1]);
+        for (int i = 1; i < sArr.length; i += 2) {
+            String operatorCode = sArr[i];
+            int right = Integer.parseInt(sArr[i + 1]);
 
-            res = doCalculate(operator, res, right);
+            res = doCalculate(operatorCode, res, right);
         }
 
         return res;
@@ -24,39 +28,46 @@ public class Calculator {
     }
 
     private static int doCalculate(String operator, int res, int right) {
-        switch (operator) {
-            case "*":
-                res = multiply(res, right);
-                break;
-            case "+":
-                res = plus(res, right);
-                break;
-            case "-":
-                res = minus(res, right);
-                break;
-            case "/":
-                res = divide(res, right);
-                break;
-            default:
-                throw new IllegalArgumentException("abnormal operator");
+        return Operator.lookUp(operator)
+                .calculate(res, right);
+    }
+
+    enum Operator {
+
+        PLUS("+", (a, b) -> a + b),
+
+        MINUS("-", (a, b) -> a - b),
+
+        DIVIDE("/", (a, b) -> a / b),
+
+        MULTIPLY("*", (a, b) -> a * b);
+
+        private final String code;
+        private final BiFunction<Integer, Integer, Integer> calculationFunction;
+        private final static Map<String, Operator> operatorMap = new HashMap<String, Operator>() {
+            {
+                for (Operator operator : Operator.values()) {
+                    put(operator.code, operator);
+                }
+            }
+        };
+
+        Operator(String code, BiFunction<Integer, Integer, Integer> calculationFunction) {
+            this.code = code;
+            this.calculationFunction = calculationFunction;
         }
 
-        return res;
-    }
+        public Integer calculate(Integer a, Integer b) {
+            return calculationFunction.apply(a, b);
+        }
 
-    private static int divide(int a, int b) {
-        return a / b;
-    }
+        public static Operator lookUp(String operatorCode) {
+            Operator operator = operatorMap.get(operatorCode);
+            if (operator == null) {
+                throw new IllegalArgumentException("abnormal operator");
+            }
 
-    private static int minus(int a, int b) {
-        return a - b;
-    }
-
-    private static int plus(int a, int b) {
-        return a + b;
-    }
-
-    private static int multiply(int a, int b) {
-        return a * b;
+            return operator;
+        }
     }
 }
