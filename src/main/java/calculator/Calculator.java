@@ -23,7 +23,7 @@ public class Calculator {
 
     private static void validateTarget(String target) {
         if (target == null || target.trim().equals("")) {
-            throw new IllegalArgumentException("target must not null or not empty");
+            throw new IllegalArgumentException("Target must not null or not empty");
         }
     }
 
@@ -64,7 +64,7 @@ public class Calculator {
         public static Operator lookUp(String operatorCode) {
             Operator operator = operatorMap.get(operatorCode);
             if (operator == null) {
-                throw new IllegalArgumentException("abnormal operator");
+                throw new IllegalArgumentException("Abnormal operator");
             }
 
             return operator;

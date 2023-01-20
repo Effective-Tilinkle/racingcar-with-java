@@ -25,7 +25,7 @@ class CalculatorTest {
         // when
         // then
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Calculator.calculate(target));
-        assertEquals("target must not null or not empty", illegalArgumentException.getMessage());
+        assertEquals("Target must not null or not empty", illegalArgumentException.getMessage());
     }
 
     @Test
@@ -36,6 +36,6 @@ class CalculatorTest {
         // when
         // then
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Calculator.calculate(target));
-        assertEquals("abnormal operator", illegalArgumentException.getMessage());
+        assertEquals("Abnormal operator", illegalArgumentException.getMessage());
     }
 }
