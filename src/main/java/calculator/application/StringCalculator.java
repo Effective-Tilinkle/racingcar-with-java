@@ -1,8 +1,8 @@
-package application;
+package calculator.application;
 
-import domain.Calculator;
-import view.InputView;
-import view.OutputView;
+import calculator.domain.Calculator;
+import calculator.view.InputView;
+import calculator.view.OutputView;
 
 public class StringCalculator {
     public void calculate() {

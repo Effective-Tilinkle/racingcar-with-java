@@ -1,6 +1,6 @@
-package domain;
+package calculator.domain;
 
-import utils.StringUtils;
+import calculator.utils.StringUtils;
 
 public class Calculator {
     public static final int FIRST_INDEX = 0;
