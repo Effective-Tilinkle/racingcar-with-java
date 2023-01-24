@@ -1,7 +1,7 @@
 package calculator.utils;
 
-public class StringUtils {
-    private StringUtils() { }
+public class CalculatorUtils {
+    private CalculatorUtils() { }
 
     public static String[] split(String input) {
         return input.split(" ");
