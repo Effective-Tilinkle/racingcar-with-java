@@ -1,6 +1,6 @@
 package calculator.domain;
 
-import calculator.utils.StringUtils;
+import calculator.utils.CalculatorUtils;
 
 public class Calculator {
     public static final int FIRST_INDEX = 0;
@@ -9,11 +9,11 @@ public class Calculator {
 
     public int getResult(String input) {
         validate(input);
-        return calculate(StringUtils.split(input));
+        return calculate(CalculatorUtils.split(input));
     }
 
     private void validate(String input) {
-        if (input.trim().isEmpty()) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(INPUT_VALUE_EMPTY);
         }
     }
@@ -26,24 +26,24 @@ public class Calculator {
     }
 
     private int accumulateResult(int length, int initialValue, String[] target) {
-        int total = initialValue;
+        int totalValue = initialValue;
 
         for (int index = 2; index < length; index += CALCULATION_UNIT_VALUE) {
-            total = Operator.operate(getSymbol(index, target), total, getSecondValue(index, target));
+            totalValue = Operator.operate(totalValue, getOperationSymbol(index, target), getSecondValue(index, target));
         }
 
-        return total;
+        return totalValue;
     }
 
     private int getFirstValue(String[] target) {
-        return StringUtils.toInt(target[FIRST_INDEX]);
+        return CalculatorUtils.toInt(target[FIRST_INDEX]);
     }
 
     private int getSecondValue(int index, String[] target) {
-        return StringUtils.toInt(target[index]);
+        return CalculatorUtils.toInt(target[index]);
     }
 
-    private String getSymbol(int index, String[] target) {
+    private String getOperationSymbol(int index, String[] target) {
         return target[index - 1];
     }
 
