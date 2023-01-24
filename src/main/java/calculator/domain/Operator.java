@@ -1,7 +1,11 @@
 package calculator.domain;
 
-import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.BinaryOperator;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public enum Operator {
     PLUS ("+", (firstValue, secondValue) -> firstValue + secondValue),
@@ -20,20 +24,31 @@ public enum Operator {
         this.expression = expression;
     }
 
+    private static final Map<String, BinaryOperator<Integer>> formulaStorage =
+            Stream.of(values())
+                    .collect(toUnmodifiableMap(Operator::getOperationSymbol, Operator::getExpression));
+
     private static void validateDivided(Integer firstValue, Integer secondValue) {
         if (firstValue == 0 || secondValue == 0) {
             throw new ArithmeticException("0으로 나눌 수 없습니다.");
         }
     }
 
-    public static int operate(String inputSymbol, int firstValue, int secondValue) {
-        return findSymbols(inputSymbol).expression.apply(firstValue, secondValue);
+    public static int operate(int firstValue, String inputSymbol, int secondValue) {
+        return getFormula(inputSymbol).apply(firstValue, secondValue);
     }
 
-    private static Operator findSymbols(String inputSymbol) {
-        return Arrays.stream(values())
-                .filter(operator -> operator.operationSymbol.equals(inputSymbol))
-                .findFirst()
+    public static BinaryOperator<Integer> getFormula(String inputSymbol) {
+        return Optional.ofNullable(formulaStorage.get(inputSymbol))
                 .orElseThrow(() -> new IllegalArgumentException("사칙 연산 기호가 아닙니다. 입력값을 확인해주세요."));
     }
+
+    public String getOperationSymbol() {
+        return operationSymbol;
+    }
+
+    public BinaryOperator<Integer> getExpression() {
+        return expression;
+    }
+
 }

@@ -16,18 +16,18 @@ class OperatorTest {
     @DisplayName("지정한 사칙연산 기호가 아닌 경우 IllegalArgumentException이 발생한다.")
     @ParameterizedTest
     @MethodSource("invalidOperatorProvider")
-    void 유효하지_않은_연산자_테스트(String symbol, int firstValue, int secondValue) {
+    void 유효하지_않은_연산자_테스트(int firstValue, String symbol, int secondValue) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Operator.operate(symbol, firstValue, secondValue))
+                .isThrownBy(() -> Operator.operate(firstValue, symbol, secondValue))
                 .withMessage("사칙 연산 기호가 아닙니다. 입력값을 확인해주세요.");
     }
 
     private static Stream<Arguments> invalidOperatorProvider() {
         return Stream.of(
-                Arguments.of("$", 1, 2),
-                Arguments.of("!", 2, 3),
-                Arguments.of("~", 2, 3),
-                Arguments.of("#", 2, 3)
+                Arguments.of(1, "$", 2),
+                Arguments.of(2, "!",3),
+                Arguments.of(2, "~", 3),
+                Arguments.of(2, "#", 3)
         );
     }
 
@@ -38,9 +38,8 @@ class OperatorTest {
             "10 : 0",
             "0 : 0"}, delimiter = ':')
     void 모든값은_0으로_나눌수_없다(int firstValue, int secondValue) {
-        assertThatThrownBy(() -> Operator.operate("/", firstValue, secondValue))
+        assertThatThrownBy(() -> Operator.operate(firstValue, "/", secondValue))
                 .isInstanceOf(ArithmeticException.class)
                 .hasMessage("0으로 나눌 수 없습니다.");
     }
-
 }
