@@ -15,7 +15,7 @@ class StringCalculatorTest {
     @ValueSource(strings = {" ", ""})
     void 입력값은_공백이_아니어야한다(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new StringCalculator().getResult(input))
+                .isThrownBy(() -> StringCalculator.getResult(input))
                 .withMessage("입력 값이 비어 있습니다.");
     }
 
@@ -28,7 +28,7 @@ class StringCalculatorTest {
             "20 // 3 * 4 - 2" })
     void 올바르지_않은_입력값_테스트(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new StringCalculator().getResult(input));
+                .isThrownBy(() -> StringCalculator.getResult(input));
     }
 
     @ParameterizedTest
@@ -41,7 +41,7 @@ class StringCalculatorTest {
             "2 + 3 * 4 / 2 : 10",
             "20 / 3 * 4 - 2 : 22", }, delimiter = ':')
     void 사칙연산_테스트(final String input, final int result) {
-        assertThat(new StringCalculator().getResult(input)).isEqualTo(result);
+        assertThat(StringCalculator.getResult(input)).isEqualTo(result);
     }
 
     @DisplayName("완전한 형태의 수식만 계산식에 포함된다.")
@@ -53,6 +53,6 @@ class StringCalculatorTest {
             "2 + 3 * 4 / 2 / : 10",
             "20 / 3 * 4 - 2 * : 22", }, delimiter = ':')
     void 계산식_구성_테스트(final String input, final int result) {
-        assertThat(new StringCalculator().getResult(input)).isEqualTo(result);
+        assertThat(StringCalculator.getResult(input)).isEqualTo(result);
     }
 }
