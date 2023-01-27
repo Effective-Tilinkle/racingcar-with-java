@@ -38,7 +38,7 @@ public enum Operator {
         return getFormula(inputSymbol).apply(firstValue, secondValue);
     }
 
-    public static BinaryOperator<Integer> getFormula(String inputSymbol) {
+    private static BinaryOperator<Integer> getFormula(String inputSymbol) {
         return Optional.ofNullable(formulaStorage.get(inputSymbol))
                 .orElseThrow(() -> new IllegalArgumentException("사칙 연산 기호가 아닙니다. 입력값을 확인해주세요."));
     }
