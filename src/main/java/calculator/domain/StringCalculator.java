@@ -38,7 +38,8 @@ public class StringCalculator {
     }
 
     private static String getOperationSymbol(int index, String[] target) {
-        return target[index - 1];
+        int symbolIndex = index - 1;
+        return target[symbolIndex];
     }
 
 }
