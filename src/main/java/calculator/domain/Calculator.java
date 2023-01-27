@@ -3,9 +3,9 @@ package calculator.domain;
 import calculator.utils.CalculatorUtils;
 
 public class Calculator {
-    public static final int FIRST_INDEX = 0;
-    public static final int CALCULATION_UNIT_VALUE = 2;
-    public static final String INPUT_VALUE_EMPTY = "입력 값이 비어 있습니다.";
+    private static final int FIRST_INDEX = 0;
+    private static final int CALCULATION_UNIT_VALUE = 2;
+    private static final String INPUT_VALUE_EMPTY = "입력 값이 비어 있습니다.";
 
     public int getResult(String input) {
         validate(input);
