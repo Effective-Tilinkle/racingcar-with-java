@@ -2,7 +2,7 @@ package calculator.domain;
 
 import calculator.utils.CalculatorUtils;
 
-public class Calculator {
+public class StringCalculator {
     private static final int FIRST_INDEX = 0;
     private static final int CALCULATION_UNIT_VALUE = 2;
 

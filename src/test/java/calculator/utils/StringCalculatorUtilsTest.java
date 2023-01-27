@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CalculatorUtilsTest {
+class StringCalculatorUtilsTest {
 
     @DisplayName("입력값이 공백을 기준으로 나누어져 배열로 생성된다.")
     @Test

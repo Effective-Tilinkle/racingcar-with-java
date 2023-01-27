@@ -1,13 +1,13 @@
 package calculator.application;
 
-import calculator.domain.Calculator;
+import calculator.domain.StringCalculator;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 
-public class StringCalculator {
+public class Calculator {
     public void calculate() {
         String input = InputView.inputValue();
-        int result = new Calculator().getResult(input);
+        int result = new StringCalculator().getResult(input);
         OutputView.printResult(result);
     }
 }
