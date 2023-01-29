@@ -3,7 +3,7 @@ package calculator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 public enum Operator {
     PLUS("+", (a, b) -> a + b, Operator::noneValidation),
@@ -15,7 +15,7 @@ public enum Operator {
     MULTIPLY("*", (a, b) -> a * b, Operator::noneValidation);
 
     private final String code;
-    private final BiFunction<Integer, Integer, Integer> calculationFunction;
+    private final BinaryOperator<Integer> binaryOperator;
     private final BiConsumer<Integer, Integer> validator;
     private final static Map<String, Operator> operatorMap = new HashMap<String, Operator>() {
         {
@@ -25,15 +25,15 @@ public enum Operator {
         }
     };
 
-    Operator(String code, BiFunction<Integer, Integer, Integer> calculationFunction, BiConsumer<Integer, Integer> validator) {
+    Operator(String code, BinaryOperator<Integer> binaryOperator, BiConsumer<Integer, Integer> validator) {
         this.code = code;
-        this.calculationFunction = calculationFunction;
+        this.binaryOperator = binaryOperator;
         this.validator = validator;
     }
 
     public Integer calculate(Integer a, Integer b) {
         validator.accept(a,b);
-        return calculationFunction.apply(a, b);
+        return binaryOperator.apply(a, b);
     }
 
     public static Operator lookUp(String operatorCode) {
