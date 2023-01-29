@@ -1,10 +1,9 @@
 package calculator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
@@ -25,8 +24,9 @@ class CalculatorTest {
 
         // when
         // then
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Calculator.calculate(target));
-        assertEquals("Target must not null or not empty", illegalArgumentException.getMessage());
+        assertThatThrownBy(() -> Calculator.calculate(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Target must not null or not empty");
     }
 
     @Test
@@ -36,8 +36,9 @@ class CalculatorTest {
 
         // when
         // then
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Calculator.calculate(target));
-        assertEquals("Abnormal operator", illegalArgumentException.getMessage());
+        assertThatThrownBy(() -> Calculator.calculate(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Abnormal operator");
     }
 
     @Test
@@ -47,7 +48,7 @@ class CalculatorTest {
 
         // when
         // then
-        Assertions.assertThatThrownBy(() -> Calculator.calculate(target))
+        assertThatThrownBy(() -> Calculator.calculate(target))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("0으로 나눌수 없습니다");
 
