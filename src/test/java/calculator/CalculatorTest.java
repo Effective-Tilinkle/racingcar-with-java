@@ -1,5 +1,6 @@
 package calculator;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,5 +38,18 @@ class CalculatorTest {
         // then
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Calculator.calculate(target));
         assertEquals("Abnormal operator", illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 나눗셈_0으로_나누면_안된다() {
+        // given
+        String target = "2 + 3 * 4 / 0";
+
+        // when
+        // then
+        Assertions.assertThatThrownBy(() -> Calculator.calculate(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("0으로 나눌수 없습니다");
+
     }
 }

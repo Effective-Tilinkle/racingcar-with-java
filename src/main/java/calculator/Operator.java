@@ -2,19 +2,21 @@ package calculator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 public enum Operator {
-    PLUS("+", (a, b) -> a + b),
+    PLUS("+", (a, b) -> a + b, Operator::noneValidation),
 
-    MINUS("-", (a, b) -> a - b),
+    MINUS("-", (a, b) -> a - b, Operator::noneValidation),
 
-    DIVIDE("/", (a, b) -> a / b),
+    DIVIDE("/", (a, b) -> a / b, Operator::divideValidation),
 
-    MULTIPLY("*", (a, b) -> a * b);
+    MULTIPLY("*", (a, b) -> a * b, Operator::noneValidation);
 
     private final String code;
     private final BiFunction<Integer, Integer, Integer> calculationFunction;
+    private final BiConsumer<Integer, Integer> validator;
     private final static Map<String, Operator> operatorMap = new HashMap<String, Operator>() {
         {
             for (Operator operator : Operator.values()) {
@@ -23,12 +25,14 @@ public enum Operator {
         }
     };
 
-    Operator(String code, BiFunction<Integer, Integer, Integer> calculationFunction) {
+    Operator(String code, BiFunction<Integer, Integer, Integer> calculationFunction, BiConsumer<Integer, Integer> validator) {
         this.code = code;
         this.calculationFunction = calculationFunction;
+        this.validator = validator;
     }
 
     public Integer calculate(Integer a, Integer b) {
+        validator.accept(a,b);
         return calculationFunction.apply(a, b);
     }
 
@@ -39,5 +43,13 @@ public enum Operator {
         }
 
         return operator;
+    }
+
+    public static void noneValidation(Integer a, Integer b) {}
+
+    private static void divideValidation(Integer left, Integer right) {
+        if (right == 0) {
+            throw new IllegalArgumentException("0으로 나눌수 없습니다");
+        }
     }
 }
