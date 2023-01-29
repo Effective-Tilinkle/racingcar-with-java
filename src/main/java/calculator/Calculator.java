@@ -5,16 +5,16 @@ public class Calculator {
         validateTarget(target);
 
         String[] sArr = target.split(" ");
-        int res = Integer.parseInt(sArr[0]);
+        int result = Integer.parseInt(sArr[0]);
 
         for (int i = 1; i < sArr.length; i += 2) {
             String operatorCode = sArr[i];
             int right = Integer.parseInt(sArr[i + 1]);
 
-            res = doCalculate(operatorCode, res, right);
+            result = doCalculate(operatorCode, result, right);
         }
 
-        return res;
+        return result;
     }
 
     private static void validateTarget(String target) {
@@ -23,8 +23,8 @@ public class Calculator {
         }
     }
 
-    private static int doCalculate(String operator, int res, int right) {
+    private static int doCalculate(String operator, int left, int right) {
         return Operator.lookUp(operator)
-                .calculate(res, right);
+                .calculate(left, right);
     }
 }
