@@ -1,7 +1,7 @@
-package calculator;
+package domain;
 
-public class Calculator {
-    public static int calculate(String target) {
+public class SimpleCalculator implements Calculator<Integer> {
+    public Integer calculate(String target) {
         validateTarget(target);
 
         String[] sArr = target.split(" ");
@@ -23,7 +23,7 @@ public class Calculator {
         }
     }
 
-    private static int doCalculate(String operator, int left, int right) {
+    private int doCalculate(String operator, int left, int right) {
         return Operator.lookUp(operator)
                 .calculate(left, right);
     }
