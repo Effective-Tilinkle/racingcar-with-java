@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
 public enum Operator {
-    PLUS ("+", (firstValue, secondValue) -> firstValue + secondValue),
-    MINUS ("-", (firstValue, secondValue) -> firstValue - secondValue),
-    MULTIPLY ("*", (firstValue, secondValue) -> firstValue * secondValue),
-    DIVIDED ("/", (firstValue, secondValue) -> {
-        validateDivided(firstValue, secondValue);
-        return firstValue / secondValue;
+    PLUS ("+", (leftOperand, rightOperand) -> leftOperand + rightOperand),
+    MINUS ("-", (leftOperand, rightOperand) -> leftOperand - rightOperand),
+    MULTIPLY ("*", (leftOperand, rightOperand) -> leftOperand * rightOperand),
+    DIVIDED ("/", (leftOperand, rightOperand) -> {
+        validateDivided(leftOperand, rightOperand);
+        return leftOperand / rightOperand;
     });
 
     private final String operationSymbol;
@@ -28,14 +28,14 @@ public enum Operator {
             Stream.of(values())
                     .collect(toUnmodifiableMap(Operator::getOperationSymbol, Operator::getExpression));
 
-    private static void validateDivided(Integer firstValue, Integer secondValue) {
-        if (firstValue == 0 || secondValue == 0) {
+    private static void validateDivided(Integer leftOperand, Integer rightOperand) {
+        if (leftOperand == 0 || rightOperand == 0) {
             throw new ArithmeticException("0으로 나눌 수 없습니다.");
         }
     }
 
-    public static int operate(int firstValue, String inputSymbol, int secondValue) {
-        return getFormula(inputSymbol).apply(firstValue, secondValue);
+    public static int operate(int leftOperand, String inputSymbol, int rightOperand) {
+        return getFormula(inputSymbol).apply(leftOperand, rightOperand);
     }
 
     private static BinaryOperator<Integer> getFormula(String inputSymbol) {
