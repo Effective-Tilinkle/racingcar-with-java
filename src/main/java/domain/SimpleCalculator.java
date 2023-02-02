@@ -4,14 +4,14 @@ public class SimpleCalculator implements Calculator<Integer> {
     public Integer calculate(String target) {
         validateTarget(target);
 
-        String[] sArr = target.split(" ");
-        int result = Integer.parseInt(sArr[0]);
+        String[] values = target.split(" ");
+        int result = Integer.parseInt(values[0]);
 
-        for (int i = 1; i < sArr.length; i += 2) {
-            String operatorCode = sArr[i];
-            int right = Integer.parseInt(sArr[i + 1]);
+        for (int i = 1; i < values.length; i += 2) {
+            String operatorCode = values[i];
+            int rightOperand = Integer.parseInt(values[i + 1]);
 
-            result = doCalculate(operatorCode, result, right);
+            result = doCalculate(operatorCode, result, rightOperand);
         }
 
         return result;
@@ -23,8 +23,8 @@ public class SimpleCalculator implements Calculator<Integer> {
         }
     }
 
-    private int doCalculate(String operator, int left, int right) {
+    private int doCalculate(String operator, int leftOperand, int rightOperand) {
         return Operator.lookUp(operator)
-                .calculate(left, right);
+                .calculate(leftOperand, rightOperand);
     }
 }
