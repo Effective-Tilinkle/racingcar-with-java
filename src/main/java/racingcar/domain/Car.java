@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import utils.Randoms;
-
 public class Car {
     private int position;
 
@@ -11,9 +9,8 @@ public class Car {
         return new Car();
     }
 
-    public void move() {
-        int randomNumber = Randoms.pickNumberInRange(GameRules.START_RANGE.getValue(), GameRules.END_RANGE.getValue());
-        if (randomNumber >= GameRules.MOVABLE_STANDARD_VALUE.getValue()) {
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.moveAble()) {
             position++;
         }
     }
