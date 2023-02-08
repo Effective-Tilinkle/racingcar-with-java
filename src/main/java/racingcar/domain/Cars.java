@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Cars {
     private List<Car> cars;
@@ -23,10 +24,14 @@ public class Cars {
         return cars;
     }
 
-    public void moveCar() {
+    public void moveCars() {
         MoveStrategy moveStrategy = new CarMoveStrategy();
         for (Car car : cars) {
             car.move(moveStrategy);
         }
+    }
+
+    public Stream<Car> stream() {
+        return cars.stream();
     }
 }
