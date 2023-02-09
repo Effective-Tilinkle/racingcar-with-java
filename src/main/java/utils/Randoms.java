@@ -9,7 +9,7 @@ public class Randoms {
 
     public static int pickNumberInRange(final int startRange, final int endRange) {
         validateRange(startRange, endRange);
-        return RANDOM.nextInt(endRange);
+        return startRange + RANDOM.nextInt(endRange - startRange + 1);
     }
 
     private static void validateRange(final int startRange, final int endRange) {
