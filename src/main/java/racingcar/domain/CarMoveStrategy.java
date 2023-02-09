@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import utils.Randoms;
+import racingcar.utils.Randoms;
 
 public class CarMoveStrategy implements MoveStrategy {
 
