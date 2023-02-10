@@ -2,6 +2,10 @@ package racingcar.view;
 
 import racingcar.domain.Cars;
 
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.joining;
+
 public class ResultView {
     private static final String HYPHEN = "-";
 
@@ -14,11 +18,8 @@ public class ResultView {
     }
 
     private static String printHyphen(int position) {
-        StringBuilder hyphen = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            hyphen.append(HYPHEN);
-        }
-
-        return hyphen.toString();
+        return IntStream.rangeClosed(1, position)
+                .mapToObj(moveCount -> HYPHEN)
+                .collect(joining(""));
     }
 }
