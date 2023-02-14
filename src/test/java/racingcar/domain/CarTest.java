@@ -50,7 +50,7 @@ class CarTest {
             "3 : 0"}, delimiter = ':')
     void 자동차_전진_규칙_테스트(int moveNumber, int expectPosition) {
         TestMoveStrategy moveStrategy = new TestMoveStrategy();
-        moveStrategy.moveAble(moveNumber);
+        moveStrategy.movable(moveNumber);
         car.move(moveStrategy);
 
         assertThat(car.getPosition()).isEqualTo(expectPosition);
