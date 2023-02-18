@@ -5,12 +5,8 @@ import racingcar.view.ResultView;
 public class Racing {
     private Round round;
 
-    private Racing(Round round) {
+    public Racing(Round round) {
         this.round = round;
-    }
-
-    public static Racing from(int round) {
-        return new Racing(Round.from(round));
     }
 
     public void start(Cars cars) {
