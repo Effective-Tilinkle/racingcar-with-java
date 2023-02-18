@@ -9,9 +9,9 @@ public class Racing {
         this.round = round;
     }
 
-    public void start(Cars cars) {
+    public void start(Cars cars, MoveStrategy moveStrategy) {
         for (int i = 0; i < round.getAttemptCount(); i++) {
-            cars.moveCars();
+            cars.moveCars(moveStrategy);
             ResultView.printRacingResult(cars);
         }
     }

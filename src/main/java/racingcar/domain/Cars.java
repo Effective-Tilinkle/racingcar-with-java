@@ -33,8 +33,7 @@ public class Cars {
         return cars;
     }
 
-    public void moveCars() {
-        MoveStrategy moveStrategy = new CarMoveStrategy();
+    public void moveCars(MoveStrategy moveStrategy) {
         for (Car car : cars) {
             car.move(moveStrategy);
         }
