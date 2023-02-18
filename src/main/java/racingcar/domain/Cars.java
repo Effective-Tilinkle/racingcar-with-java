@@ -27,7 +27,7 @@ public class Cars {
     private static List<Car> createCars(int carCount) {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carCount; i++) {
-            cars.add(Car.init());
+            cars.add(Car.newInstance());
         }
 
         return cars;

@@ -5,7 +5,7 @@ public class Car {
 
     private Car() { }
 
-    public static Car init() {
+    public static Car newInstance() {
         return new Car();
     }
 

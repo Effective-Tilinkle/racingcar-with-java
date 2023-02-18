@@ -14,7 +14,7 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = Car.init();
+        car = Car.newInstance();
     }
 
     @Nested
