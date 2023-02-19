@@ -12,11 +12,6 @@ public enum Operator {
 	private final String operator;
 	private final OperatorProcess operatorProcess;
 
-	@FunctionalInterface
-	public interface OperatorProcess {
-		Operand process(Operand num1, Operand num2);
-	}
-
 	Operator(String operator, OperatorProcess operatorProcess) {
 		this.operator = operator;
 		this.operatorProcess = operatorProcess;
