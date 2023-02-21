@@ -11,7 +11,7 @@ public class Car {
         }
     }
 
-    public int getMovementCount() {
+    public Integer getMovementCount() {
         return movementCount.get();
     }
 }
