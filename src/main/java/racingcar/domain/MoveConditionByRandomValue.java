@@ -4,10 +4,11 @@ import java.util.Random;
 
 public class MoveConditionByRandomValue implements MoveConditionStrategy {
     private final Random random = new Random();
-    private static final int moveCriteria = 4;
+    private static final int MOVE_CRITERIA = 4;
+    private static final int MAX_RANDOM_NUMBER = 9;
 
     @Override
     public boolean canMove() {
-        return random.nextInt(10) >= moveCriteria;
+        return random.nextInt(MAX_RANDOM_NUMBER + 1) >= MOVE_CRITERIA;
     }
 }
