@@ -19,7 +19,9 @@ public class RacingCars {
 
     // 경주
     public void race(MoveConditionStrategy moveConditionStrategy) {
-        racingCars.forEach(car -> car.move(moveConditionStrategy));
+        for (Car car : racingCars) {
+            car.move(moveConditionStrategy);
+        }
     }
 
     // 결과
