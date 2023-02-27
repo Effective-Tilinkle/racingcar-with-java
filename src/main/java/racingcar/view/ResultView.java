@@ -7,6 +7,8 @@ import java.util.List;
 public class ResultView {
     private static final String MOVE_VIEW = "-";
 
+    private ResultView() {}
+
     public static void printAllRacingResult(List<RacingResult> racingResults) {
         System.out.println("실행결과");
         for (RacingResult racingResult : racingResults) {
