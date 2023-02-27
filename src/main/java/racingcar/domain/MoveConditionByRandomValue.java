@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.Random;
 
 public class MoveConditionByRandomValue implements MoveConditionStrategy {
-    private final Random random = new Random();
+    private static final Random random = new Random();
     private static final int MOVE_CRITERIA = 4;
     private static final int MAX_RANDOM_NUMBER = 9;
 
