@@ -6,6 +6,7 @@ import racingcar.domain.RacingCars;
 import racingcar.domain.Round;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingCarApplicationService {
@@ -26,7 +27,7 @@ public class RacingCarApplicationService {
             allRacingResults.add(racingCars.getRacingResult());
         }
 
-        return allRacingResults;
+        return Collections.unmodifiableList(allRacingResults);
     }
 
     private List<Car> createCars(int carCount) {
