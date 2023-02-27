@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.application.RacingResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class RacingCars {
             throw new IllegalArgumentException("레이싱에 참여할 자동차는 한대 이상이어야합니다.");
         }
 
-        this.racingCars = racingCars;
+        this.racingCars = new ArrayList<>(racingCars);
     }
 
     // 경주
