@@ -10,9 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingCarApplicationServiceTest {
-    private RacingCarApplicationService racingCarApplicationService = new RacingCarApplicationService(new AlwaysTrueMoveCondition());
+    private MoveConditionStrategy alwaysTrueMoveCondition = () -> true;
+    private RacingCarApplicationService racingCarApplicationService = new RacingCarApplicationService(alwaysTrueMoveCondition);
     private int carCount = 3;
     private int roundCount = 5;
+
 
     @Test
     void 항상_움직이는_조건인_레이싱() {
@@ -28,11 +30,11 @@ class RacingCarApplicationServiceTest {
         for (int i = 0; i < roundCount; i++) {
             int moveCount = i + 1;
             assertThat(racingResults)
-                    .satisfies(racingResult -> {
+                    .satisfies(racingResult ->
                         assertThat(racingResult.getCarMovementCounts())
                                 .hasSize(carCount)
-                                .allMatch(carMoveCount -> carMoveCount == moveCount);
-                    }, Index.atIndex(i));
+                                .allMatch(carMoveCount -> carMoveCount == moveCount)
+                    , Index.atIndex(i));
         }
     }
 
@@ -52,11 +54,4 @@ class RacingCarApplicationServiceTest {
                 .hasMessage("경주 하기위해 차는 1대 이상이어야 합니다.");
     }
 
-    static class AlwaysTrueMoveCondition implements MoveConditionStrategy {
-
-        @Override
-        public boolean canMove() {
-            return true;
-        }
-    }
 }
