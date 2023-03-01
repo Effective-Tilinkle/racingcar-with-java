@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Car {
     private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "이름은 5자 이하만 입력 가능합니다.";
     private static final String BLANK_CANNOT_ENTERED_NAME = "이름에 공백은 입력할 수 없습니다.";
@@ -39,7 +41,24 @@ public class Car {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
