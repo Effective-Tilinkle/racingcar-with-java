@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.joining;
 public class Cars {
     private static final String CAR_NAME_CANNOT_DUPLICATE = "자동차 이름은 중복될 수 없습니다.";
     private static final String CAR_NAME_LEAST_ONE_MUST_ENTERED = "자동차는 1대 이상 입력되어야 합니다.";
+    private static final String COMMA = ", ";
     private static final int MINIMUM_INPUT_OF_CAR_COUNT = 1;
 
     private List<Car> cars;
@@ -56,7 +57,7 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.isWinner(topPosition))
                 .map(car -> car.getName())
-                .collect(joining(", "));
+                .collect(joining(COMMA));
     }
 
     private int getTopPosition() {
