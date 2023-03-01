@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.joining;
 public class ResultView {
     private static final String HYPHEN = "-";
     private static final String RACING_RESULT = "%s : %s";
-    private static final String WINNER_MESSAGE = "최종 우승자는 %s 입니다.";
+    private static final String WINNER_MESSAGE = "%s가 최종 우승했습니다.";
 
     private ResultView() { }
 
@@ -29,5 +29,14 @@ public class ResultView {
         return IntStream.rangeClosed(1, position)
                 .mapToObj(moveCount -> HYPHEN)
                 .collect(joining(""));
+    }
+
+    public static void printWinner(Cars cars) {
+        System.out.println(
+                String.format(
+                        WINNER_MESSAGE,
+                        cars.getWinners()
+                )
+        );
     }
 }
