@@ -56,7 +56,7 @@ public class Cars {
         int topPosition = getTopPosition();
         return cars.stream()
                 .filter(car -> car.isWinner(topPosition))
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(joining(COMMA));
     }
 
