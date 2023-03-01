@@ -41,6 +41,10 @@ public class Car {
         }
     }
 
+    public boolean isWinner(int topPosition) {
+        return position == topPosition;
+    }
+
     public String getName() {
         return name;
     }
