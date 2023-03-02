@@ -14,7 +14,7 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = Car.newInstance();
+        car = Car.from("car1");
     }
 
     @Nested
@@ -39,6 +39,7 @@ class CarTest {
             assertThat(car.getPosition()).isZero();
         }
     }
+
     @DisplayName("값이 4이상일때만 1칸 전진한다.")
     @ParameterizedTest
     @CsvSource(value = {
@@ -56,4 +57,11 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(expectPosition);
     }
 
+    @DisplayName("자동차 이름이 같은 경우 같은 Car 객체로 판단된다.")
+    @Test
+    void 객체_동치_테스트() {
+        Car car2 = Car.from("car1");
+        assertThat(car).isEqualTo(car2)
+                .hasSameHashCodeAs(car2);
+    }
 }
