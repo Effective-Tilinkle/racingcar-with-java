@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RaceConditionInputTest {
+class RaceConditionTest {
 
 	@DisplayName("자동차 댓수가 1미만 경우 에러가 발생한다")
 	@Test
 	void carCountFail() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			RaceConditionInput.of(0, 1);
+			RaceCondition.of("", 1);
 		});
 	}
 
@@ -20,7 +20,7 @@ class RaceConditionInputTest {
 	@Test
 	void carCountSuccess() {
 		assertDoesNotThrow(() -> {
-			RaceConditionInput raceConditionInput = RaceConditionInput.of(1, 1);
+			RaceCondition raceCondition = RaceCondition.of("pobi", 1);
 		});
 	}
 
@@ -28,7 +28,7 @@ class RaceConditionInputTest {
 	@Test
 	void tryCountFail() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			RaceConditionInput.of(1, 0);
+			RaceCondition.of("pobi", 0);
 		});
 	}
 
@@ -36,7 +36,7 @@ class RaceConditionInputTest {
 	@Test
 	void tryCountSuccess() {
 		assertDoesNotThrow(() -> {
-			RaceConditionInput raceConditionInput = RaceConditionInput.of(1, 1);
+			RaceCondition raceCondition = RaceCondition.of("pobi", 1);
 		});
 	}
 }

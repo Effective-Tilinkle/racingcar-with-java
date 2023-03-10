@@ -8,9 +8,6 @@ public class CarMoveStrategy implements MoveStrategy {
 
 	private CarRaceDifficulty carRaceDifficulty;
 
-	private CarMoveStrategy() {
-	}
-
 	private CarMoveStrategy(CarRaceDifficulty carRaceDifficulty) {
 		this.carRaceDifficulty = carRaceDifficulty;
 	}
