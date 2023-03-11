@@ -27,8 +27,13 @@ public class RacingCars {
     // 결과
     public RacingResult getRacingResult() {
         return new RacingResult(
-                        racingCars.stream()
-                        .map(Car::getMovementCount)
+                racingCars.stream()
+                        .map(car -> new RacingResult.Result(car.getMovementCount(), car.getCarName()))
                         .collect(Collectors.toList()));
     }
+
+    // 승자가져오기
+//    public List<Car> getWinnerCars() {
+//
+//    }
 }

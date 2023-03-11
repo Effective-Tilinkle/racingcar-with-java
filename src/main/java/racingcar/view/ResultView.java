@@ -12,14 +12,15 @@ public class ResultView {
     public static void printAllRacingResult(List<RacingResult> racingResults) {
         System.out.println("실행결과");
         for (RacingResult racingResult : racingResults) {
-            printRacingResult(racingResult.getCarMovementCounts());
+            printRacingResult(racingResult.getResults());
             System.out.println();
         }
     }
 
-    private static void printRacingResult(List<Integer> carMovementCounts) {
-        carMovementCounts.forEach(moveCount -> {
-            for (int i = 0; i < moveCount; i++) {
+    private static void printRacingResult(List<RacingResult.Result> results) {
+        results.forEach(result -> {
+            System.out.printf(result.getCarName().getName()+ " : ");
+            for (int i = 0; i < result.getCarMovementCounts(); i++) {
                 System.out.printf(MOVE_VIEW);
             }
             System.out.println();

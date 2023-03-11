@@ -1,14 +1,18 @@
 package racingcar.application;
 
+import racingcar.domain.CarName;
+
+import java.util.List;
+
 public class RaceCommand {
-    private final int carCount;
+    private final List<CarName> carNames;
     private final int roundCount;
 
-    public RaceCommand(int carCount, int roundCount) {
-        validateCarCount(carCount);
+    public RaceCommand(List<CarName> carNames, int roundCount) {
+        validateCarNames(carNames);
         validateRoundCount(roundCount);
 
-        this.carCount = carCount;
+        this.carNames = carNames;
         this.roundCount = roundCount;
     }
 
@@ -18,14 +22,14 @@ public class RaceCommand {
         }
     }
 
-    private void validateCarCount(int carCount) {
-        if (carCount < 1) {
+    private void validateCarNames(List<CarName> carNames) {
+        if (carNames == null || carNames.isEmpty()) {
             throw new IllegalArgumentException("경주 하기위해 차는 1대 이상이어야 합니다.");
         }
     }
 
-    public int getCarCount() {
-        return carCount;
+    public List<CarName> getCarNames() {
+        return carNames;
     }
 
     public int getRoundCount() {
