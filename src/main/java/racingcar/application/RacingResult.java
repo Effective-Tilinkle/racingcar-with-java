@@ -8,13 +8,19 @@ import java.util.List;
 
 public class RacingResult {
     private final List<Result> results;
+    private final List<CarName> winnerCarNames;
 
-    public RacingResult(List<Result> results) {
+    public RacingResult(List<Result> results, List<CarName> winnerCarNames) {
         this.results = Collections.unmodifiableList(new ArrayList<>(results));
+        this.winnerCarNames = Collections.unmodifiableList(new ArrayList<>(winnerCarNames));
     }
 
     public List<Result> getResults() {
         return results;
+    }
+
+    public List<CarName> getWinnerCarNames() {
+        return winnerCarNames;
     }
 
     public static final class Result {
