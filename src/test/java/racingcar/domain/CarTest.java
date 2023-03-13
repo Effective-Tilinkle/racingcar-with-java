@@ -13,7 +13,7 @@ class CarTest {
         int nThreads = 100;
         ExecutorService executorService = Executors.newFixedThreadPool(nThreads);
         CyclicBarrier cyclicBarrier = new CyclicBarrier(nThreads + 1);
-        Car car = new Car();
+        Car car = new Car(new CarName("jh"));
         MockMoveConditionStrategy mockMoveConditionStrategy = new MockMoveConditionStrategy();
 
         // when
