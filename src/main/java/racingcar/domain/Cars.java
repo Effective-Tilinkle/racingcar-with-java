@@ -56,7 +56,7 @@ public class Cars {
     public String getWinners() {
         int topPosition = getTopPosition();
         return cars.stream()
-                .filter(car -> car.isWinner(topPosition))
+                .filter(car -> isWinner(car, topPosition))
                 .map(Car::getName)
                 .collect(joining(COMMA));
     }
@@ -67,6 +67,10 @@ public class Cars {
             topPosition = Math.max(topPosition, car.getPosition());
         }
         return topPosition;
+    }
+
+    private boolean isWinner(Car car, int topPosition) {
+        return car.getPosition() == topPosition;
     }
 
     public Stream<Car> stream() {
