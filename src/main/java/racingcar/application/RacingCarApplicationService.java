@@ -1,9 +1,6 @@
 package racingcar.application;
 
-import racingcar.domain.Car;
-import racingcar.domain.MoveConditionStrategy;
-import racingcar.domain.RacingCars;
-import racingcar.domain.Round;
+import racingcar.domain.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +14,7 @@ public class RacingCarApplicationService {
     }
 
     public List<RacingResult> raceAndGetAllResult(RaceCommand raceCommand) {
-        List<Car> cars = createCars(raceCommand.getCarCount());
+        List<Car> cars = createCars(raceCommand.getCarNames());
         Round round = new Round(raceCommand.getRoundCount());
         RacingCars racingCars = new RacingCars(cars);
         List<RacingResult> allRacingResults = new ArrayList<>();
@@ -30,10 +27,10 @@ public class RacingCarApplicationService {
         return Collections.unmodifiableList(allRacingResults);
     }
 
-    private List<Car> createCars(int carCount) {
+    private List<Car> createCars(List<CarName> carNames) {
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car());
+        for (CarName carName : carNames) {
+            cars.add(new Car(carName));
         }
 
         return cars;
